@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
     },
     text: {
         margin: 15,
-        fontFamily: "Inter",
         fontSize: 15,
         fontWeight: "bold"
     }

@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         textAlign: "center",
-        fontFamily: "Inter",
         fontWeight: "bold",
         color: "black",
     },
@@ -68,7 +67,6 @@ const styles = StyleSheet.create({
         marginTop: 5,
         textAlign: "center",
         fontSize: 15,
-        fontFamily: "Inter",
         color: "gray"
     },
     buttonBackground: {
@@ -81,7 +79,6 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 20,
-        fontFamily: "Inter",
         fontWeight: "bold",
         color: "white"
     }

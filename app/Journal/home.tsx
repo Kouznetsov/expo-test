@@ -1,17 +1,17 @@
-import React, {useCallback, useState} from "react";
-import {FlatList, SafeAreaView, StyleSheet, Text, View} from "react-native";
+import React, {useCallback, useState,} from "react";
+import {FlatList, Platform, SafeAreaView, SafeAreaView as savrn, StyleSheet, View} from "react-native";
 import {translate} from "@/components/localization/Translator";
-import BackArrow from "@/components/BackArrow";
 import AddButton from "@/components/Journal/AddButton";
-import {useFocusEffect, useRouter} from "expo-router";
+import {Stack, useFocusEffect, useRouter} from "expo-router";
 import BlueBg from "@/components/BlueBg";
 import JournalEntriesManager from "@/components/Journal/JournalEntriesManager";
 import HomeListItem from "@/components/Journal/HomeListItem";
-
+import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 export default function Home() {
     const router = useRouter()
     const [entries, setEntries] = useState([...JournalEntriesManager.entries])
+    const insets = useSafeAreaInsets()
 
     useFocusEffect(useCallback(() => {
         setEntries([...JournalEntriesManager.entries])
@@ -19,11 +19,19 @@ export default function Home() {
 
     return (
         <View style={style.container}>
+            <Stack.Screen options={{
+                headerTitle: translate("journal"),
+
+            }}/>
             <BlueBg/>
-            <SafeAreaView style={{flex: 1}}>
-                <BackArrow/>
-                <Text style={style.title}>{translate("journal")}</Text>
-                <FlatList data={entries} renderItem={(item) =>
+            {
+                // Transparent objects in android are considered as non-existing.
+                // Thus the horror below.
+                // (If the header is transparent, android considers it to be missing, cf rootLayout)
+            }
+            <SafeAreaView style={{flex: 1, paddingTop: Platform.OS === "android" ? insets.top + 50 : 0}}>
+                <FlatList
+                    data={entries} renderItem={(item) =>
                     <HomeListItem entry={item.item}
                                   onRemovePress={() => {
                                       JournalEntriesManager.removeEntry(item.item.title)
@@ -53,7 +61,6 @@ const style = StyleSheet.create({
     title: {
         fontSize: 30,
         marginTop: 7,
-        fontFamily: "Inter",
         fontWeight: "bold",
         alignSelf: "center"
     },

@@ -2687,7 +2687,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native/normalize-color@npm:^2.1.0":
+"@react-native/normalize-color@npm:*, @react-native/normalize-color@npm:^2.1.0":
   version: 2.1.0
   resolution: "@react-native/normalize-color@npm:2.1.0"
   checksum: 10c0/95814a1e2aac9c00dfc2c65f9e2caec07f70d3dba903b5640f5cf24605bf39863e572f2a5138a85d1c514fb3c33f6931595e0a9f738a58b5c220ee74f2bec13b
@@ -6468,6 +6468,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"deprecated-react-native-prop-types@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "deprecated-react-native-prop-types@npm:2.3.0"
+  dependencies:
+    "@react-native/normalize-color": "npm:*"
+    invariant: "npm:*"
+    prop-types: "npm:*"
+  checksum: 10c0/a4bf78dde109cd1a706206fa6e06f7c44e70bc327b990f0f7f936d5d0b8a2372bc78e09979fb2e84bbc5233774aca4165b3ecd17a74765ccc11cead4827380ca
+  languageName: node
+  linkType: hard
+
 "destroy@npm:1.2.0":
   version: 1.2.0
   resolution: "destroy@npm:1.2.0"
@@ -7066,6 +7077,17 @@ __metadata:
   peerDependencies:
     expo: "*"
   checksum: 10c0/aed3164cee4483e47fa56c8898384769d60ebb3f94553f7ad2a33a8902d73a1379aee3fc51833c8f0a4a59979ed842ba079e52c8e1903104b1ad312ad90fe1d1
+  languageName: node
+  linkType: hard
+
+"expo-camera@npm:~15.0.16":
+  version: 15.0.16
+  resolution: "expo-camera@npm:15.0.16"
+  dependencies:
+    invariant: "npm:^2.2.4"
+  peerDependencies:
+    expo: "*"
+  checksum: 10c0/7b963f6ad6d9c43bbf2de8981439dc858c39c39fa808086e18058b0f738ebf67a9433d5c8fcc84ad0fb050103e576b9c11a7113ec165d3fd63835870e1267d5c
   languageName: node
   linkType: hard
 
@@ -8283,7 +8305,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"invariant@npm:^2.2.4":
+"invariant@npm:*, invariant@npm:^2.2.4":
   version: 2.2.4
   resolution: "invariant@npm:2.2.4"
   dependencies:
@@ -10417,6 +10439,7 @@ __metadata:
     "@types/react": "npm:~18.2.45"
     "@types/react-test-renderer": "npm:^18.0.7"
     expo: "npm:^51.0.34"
+    expo-camera: "npm:~15.0.16"
     expo-constants: "npm:~16.0.2"
     expo-font: "npm:~12.0.10"
     expo-image-picker: "npm:~15.0.7"
@@ -10438,6 +10461,7 @@ __metadata:
     react-native: "npm:0.74.5"
     react-native-gesture-handler: "npm:~2.16.1"
     react-native-reanimated: "npm:~3.10.1"
+    react-native-root-toast: "npm:^3.6.0"
     react-native-safe-area-context: "npm:4.10.5"
     react-native-screens: "npm:3.31.1"
     react-native-web: "npm:~0.19.10"
@@ -11216,7 +11240,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:*, prop-types@npm:^15.5.10, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -11456,6 +11480,26 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/0154123649214bd8a83710056594590d9b5f073c5f8911f5b59a0a4f5dcca671d98b475bc4f3bb106b6c8b5c3dcb645a4973efdbe8dbd997bfae2797bd83f546
+  languageName: node
+  linkType: hard
+
+"react-native-root-siblings@npm:^4.0.0":
+  version: 4.1.1
+  resolution: "react-native-root-siblings@npm:4.1.1"
+  checksum: 10c0/48b86775d44d926db7ccc34c5beb4b4140904db008afde103d0f758289fffa769010113e31be297fa7aa56552812272cecdf379cf9e3bf9430dfaace398dfe8c
+  languageName: node
+  linkType: hard
+
+"react-native-root-toast@npm:^3.6.0":
+  version: 3.6.0
+  resolution: "react-native-root-toast@npm:3.6.0"
+  dependencies:
+    deprecated-react-native-prop-types: "npm:^2.3.0"
+    prop-types: "npm:^15.5.10"
+    react-native-root-siblings: "npm:^4.0.0"
+  peerDependencies:
+    react-native: ">=0.47.0"
+  checksum: 10c0/5764518bb7cd0b4c50a8e76061a43eab767cfe228261b51bd9ea73f78d2cc93802d3fb2e22a127ba822683d011b1c050e70ba0cb6853d01898e09c8c33f265df
   languageName: node
   linkType: hard
 

@@ -6,35 +6,13 @@ import {TamaguiProvider} from 'tamagui'
 import TamaguiConfig from '../tamagui.config'
 import Translator from "@/components/localization/Translator";
 import CodeManager from "@/components/Journal/CodeManager";
-import {
-    Inter_100Thin,
-    Inter_200ExtraLight,
-    Inter_300Light,
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_600SemiBold,
-    Inter_700Bold,
-    Inter_800ExtraBold,
-    Inter_900Black,
-    useFonts,
-} from '@expo-google-fonts/inter';
-import JournalEntriesManager from "@/components/Journal/JournalEntriesManager";
 
+import JournalEntriesManager from "@/components/Journal/JournalEntriesManager";
+import {RootSiblingParent} from "react-native-root-siblings";
 
 export default function RootLayout() {
     const colorScheme = useColorScheme()
     const [appLoaded, setAppLoaded] = React.useState(false);
-    let [fontsLoaded] = useFonts({
-        Inter_100Thin,
-        Inter_200ExtraLight,
-        Inter_300Light,
-        Inter_400Regular,
-        Inter_500Medium,
-        Inter_600SemiBold,
-        Inter_700Bold,
-        Inter_800ExtraBold,
-        Inter_900Black,
-    });
 
     useEffect(() => {
         Promise.all([
@@ -47,19 +25,21 @@ export default function RootLayout() {
         })
     }, []);
 
-    return !appLoaded || !fontsLoaded ? null : (
-        <TamaguiProvider config={TamaguiConfig} defaultTheme={colorScheme!}>
-            <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-                <Stack>
-                    <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
-                    <Stack.Screen name={"Journal/home"} options={{headerShown: false}}/>
-                    <Stack.Screen name={"Journal/newEntry"}
-                                  options={{
-                                      presentation: "modal",
-                                      title: new Date().toDateString(),
-                                  }}/>
-                </Stack>
-            </ThemeProvider>
-        </TamaguiProvider>
+    return !appLoaded ? null : (
+        <RootSiblingParent>
+            <TamaguiProvider config={TamaguiConfig} defaultTheme={colorScheme!}>
+                <ThemeProvider value={DefaultTheme}>
+                    <Stack>
+                        <Stack.Screen name="(tabs)" options={{headerShown: false}}/>
+                        <Stack.Screen name={"Journal/home"} options={{headerShown: true, headerTransparent: true}}/>
+                        <Stack.Screen name={"Journal/newEntry"}
+                                      options={{
+                                          presentation: "modal",
+                                          title: new Date().toDateString(),
+                                      }}/>
+                    </Stack>
+                </ThemeProvider>
+            </TamaguiProvider>
+        </RootSiblingParent>
     )
 }

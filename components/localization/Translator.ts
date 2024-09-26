@@ -22,9 +22,8 @@ export default class Translator {
 
     static init = async () => {
         let locales = getLocales();
-        const currentLanguage =
-            await AsyncStorage.getItem(Translator.storageKey) || locales[0].languageCode;
 
+        i18n.locale = await AsyncStorage.getItem(Translator.storageKey) || locales[0].languageCode || "fr";
         i18n.enableFallback = true;
     }
 

@@ -1,7 +1,8 @@
-import {Button, FlatList, SafeAreaView, StyleSheet} from "react-native";
+import {Button, FlatList, StyleSheet} from "react-native";
 import React from "react";
 import Translator from "@/components/localization/Translator";
 import {useRouter} from "expo-router";
+import {SafeAreaView} from "react-native-safe-area-context";
 
 export default function () {
     const router = useRouter();

@@ -6,8 +6,10 @@ import {translate} from "@/components/localization/Translator";
 import NewEntryButton from "@/components/Journal/NewEntryBottomButton";
 import images from "@/assets/images";
 import * as ImagePicker from 'expo-image-picker';
+import {MediaTypeOptions} from 'expo-image-picker';
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import JournalEntriesManager from "@/components/Journal/JournalEntriesManager";
+import {useCameraPermissions} from "expo-camera";
 
 function getTitle(): string {
     return `${new Date().toDateString()} ${new Date().toTimeString()}`
@@ -20,6 +22,7 @@ export default function () {
     const insets = useSafeAreaInsets();
     const router = useRouter();
     const params = useLocalSearchParams();
+    const [permission, requestPermission] = useCameraPermissions();
 
     useEffect(() => {
         if (params !== null) {
@@ -29,6 +32,19 @@ export default function () {
             params.title && setHeaderTitle(params.title as string)
         }
     }, []);
+
+    const onCameraPress = async () => {
+        requestPermission()
+        if (permission && permission.granted) {
+            ImagePicker.launchCameraAsync({
+                mediaTypes: MediaTypeOptions.Images,
+            }).then((result) => {
+                if (!result.canceled) {
+                    setMediaList([...mediaList, ...result.assets.map(a => a.uri)])
+                }
+            })
+        }
+    }
 
     const onLibraryPress = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -79,9 +95,8 @@ export default function () {
             <View style={[styles.bottomBar, {bottom: insets.bottom}]}>
                 <NewEntryButton onPress={onLibraryPress}
                                 image={images.picture}/>
-                <NewEntryButton onPress={() => {
-
-                }} image={images.camera}/>
+                <NewEntryButton onPress={onCameraPress}
+                                image={images.camera}/>
             </View>
         </View>
     )
@@ -97,10 +112,11 @@ const styles = StyleSheet.create({
     input: {
         width: "100%",
         fontSize: 20,
-        fontFamily: "Inter",
         padding: 20,
     },
     bottomBar: {
+        width: "100%",
+        alignItems: "center",
         position: "absolute",
         flexDirection: "row",
         justifyContent: "space-around",

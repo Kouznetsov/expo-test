@@ -18,7 +18,7 @@ export default function () {
 const styles = StyleSheet.create({
     container: {
         position: "absolute",
-        padding: 10,
+        padding: 13,
         left: 10,
     },
     arrow: {

@@ -1,17 +1,20 @@
-import {StyleSheet, View, Text} from "react-native";
+import {SafeAreaView, StyleSheet, View} from "react-native";
 import React from "react";
-import {LinearGradient} from 'tamagui/linear-gradient'
-import AppColors from "@/components/AppColors";
+import CodeManager from "@/components/Journal/CodeManager";
+import JournalCodeInput from "@/components/Journal/JournalCodeInput";
+import JournalNoCode from "@/components/Journal/JournalNoCode";
+import BlueBg from "@/components/BlueBg";
 
 export default function () {
 
     return (
         <View style={styles.container}>
-            <LinearGradient style={styles.background}
-                            colors={AppColors.gradientBg}
-                            start={[.5, 0]}
-                            end={[.5, .5]}/>
-            <Text>Journal</Text>
+            <BlueBg />
+            <SafeAreaView style={styles.safeArea}>
+                {
+                    CodeManager.hasCode() ? <JournalCodeInput/> : <JournalNoCode/>
+                }
+            </SafeAreaView>
         </View>
     )
 }
@@ -21,6 +24,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center"
+    },
+    safeArea: {
+        flex: 1,
     },
     background: {
         width: "100%",

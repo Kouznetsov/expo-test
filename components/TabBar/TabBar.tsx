@@ -2,8 +2,8 @@ import React from "react";
 import {StyleSheet, View} from "react-native";
 import {BottomTabBarProps} from "@react-navigation/bottom-tabs";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
-import TabBarItem from "@/components/TabBarItem";
-import TabBarAdd from "@/components/TabBarAdd";
+import TabBarItem from "@/components/TabBar/TabBarItem";
+import TabBarAdd from "@/components/TabBar/TabBarAdd";
 import images from "@/assets/images";
 import {BottomTabDescriptorMap} from "@react-navigation/bottom-tabs/src/types";
 

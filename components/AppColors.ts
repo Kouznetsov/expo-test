@@ -1,4 +1,6 @@
 export default {
     tabBarPrimary: "#202020",
-    gradientBg: ["#0067aa", "#FFFFFF"]
+    blue: "#0067aa",
+    gradientBg: ["#0067aa", "#dcf2ff"],
+    lightGrey: "#eaeaea",
 }
